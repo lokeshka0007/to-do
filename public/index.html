@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TO-DO-LIST</title>
+    <style>
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6fa;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 50px;
+        }
+
+        
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2f3640;
+            margin-bottom: 20px;
+        }
+
+        
+        #input {
+            width: 70%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #dcdde1;
+            font-size: 16px;
+        }
+
+        #button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 8px;
+            background-color: #00a8ff;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #button:hover {
+            background-color: #0097e6;
+        }
+
+        
+        #ul {
+            list-style: none; 
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        #ul li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f2f6;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+      
+        li span {
+            flex: 1;
+            margin-left: 10px;
+            font-size: 16px;
+            word-break: break-word;
+        }
+
+        li input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        li button {
+            margin-left: 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        li button.edit-btn {
+            background-color: #fbc531;
+            color: #2f3640;
+        }
+
+        li button.edit-btn:hover {
+            background-color: #e1b12c;
+        }
+
+        li button.delete-btn {
+            background-color: #e84118;
+            color: #fff;
+        }
+
+        li button.delete-btn:hover {
+            background-color: #c23616;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TO-DO-LIST</h1>
+        <input id="input" placeholder="Enter Note" type="text"/>
+        <button id="button" onclick="run()">Submit</button>
+
+        <ul id="ul"></ul>
+    </div>
+
+    <script>
+        function run() {
+            let textinput = document.querySelector("#input");
+            let textvalue = textinput.value.trim();
+            if (textvalue === "") return;
+
+            let list = document.createElement("li");
+
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            let span = document.createElement("span");
+            span.textContent = textvalue;
+
+            
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.className = "delete-btn";
+
+         
+            list.appendChild(checkbox);
+            list.appendChild(span);
+            
+            list.appendChild(deleteBtn);
+
+            document.querySelector("#ul").appendChild(list);
+            textinput.value = "";
+
+            
+            checkbox.addEventListener("change", function() {
+                span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+            });
+
+           
+
+         
+            deleteBtn.addEventListener("click", function() {
+                list.remove();
+            });
+        }
+    </script>
+</body>
+</html>
 
